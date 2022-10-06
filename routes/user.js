@@ -30,7 +30,7 @@ router.post("/register", (req, res) => {
       name,
       email,
       password,
-      password2
+      password2,
     });
   } else {
     User.findOne({ email: email })
@@ -42,7 +42,7 @@ router.post("/register", (req, res) => {
             name,
             email,
             password,
-            password2
+            password2,
           });
         } else {
           const u = new User({ name, email, password });
@@ -75,7 +75,7 @@ router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/dashboard",
     failureRedirect: "/users/login",
-    failureFlash: true
+    failureFlash: true,
   })(req, res, next);
 });
 
@@ -84,7 +84,7 @@ router.get("/logout", (req, res) => {
 
   req.logout((err) => {
     if (err) throw err;
-    req.flash("success_msg", "You are logged out !!");
+    req.flash("success_msg", "You are logged out !");
     res.redirect("/");
   });
 });
